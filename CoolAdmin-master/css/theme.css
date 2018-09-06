@@ -1435,7 +1435,7 @@ section {
 }
 
 .account-dropdown {
-    min-width: 305px;
+    /* min-width: 305px; */
     position: absolute;
     top: 58px;
     right: 0;
@@ -1464,22 +1464,7 @@ section {
     padding: 25px;
     border-top: 1px solid #f5f5f5;
     border-bottom: 1px solid #f2f2f2;
-}
-
-.account-dropdown .info .image {
-    float: left;
-    height: 65px;
-    width: 65px;
-    overflow: hidden;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-}
-
-.account-dropdown .info .content {
-    margin-left: 65px;
-    padding: 11px 0;
-    padding-left: 12px;
+    text-align: center;
 }
 
 .account-dropdown .info .content .name {
@@ -1519,7 +1504,7 @@ section {
     top: -18px;
     right: 33px;
 }
-
+/*
 .account-dropdown__item a {
     display: block;
     color: #333;
@@ -1542,7 +1527,7 @@ section {
 .account-dropdown__body {
     padding: 12px 0;
 }
-
+*/
 .account-dropdown__footer {
     border-top: 1px solid #f2f2f2;
 }
