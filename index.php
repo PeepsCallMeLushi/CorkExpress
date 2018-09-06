@@ -161,7 +161,7 @@
               switch ($an) {
                 case '1':
                   // code...
-                  include 'newuser.php';
+                  include 'fragments\newuser.php';
                   break;
                 case '2':
                     // code...
