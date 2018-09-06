@@ -1,3 +1,8 @@
+<?php
+require_once 'functions/functions.php';
+session_start();
+validacao();
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +16,7 @@
 
     <!-- Title Page-->
     <title>Dashboard</title>
-
+    <?php include 'connections/conn.php'; ?>
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">
     <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
@@ -52,6 +57,15 @@
                             <a class="js-arrow" href="?an=1">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
+                        <?php
+                          if($_SESSION["departamento"]=='2'){
+                            echo'
+                            <li class="active has-sub">
+                                <a class="js-arrow" href="?an=1">
+                                    <i class="fas fa-tachometer-alt"></i>Gestão de users</a>
+                            </li>';
+                          }
+                         ?>
                         <li>
                             <a href="chart.html">
                                 <i class="fas fa-chart-bar"></i>Charts</a>
@@ -129,20 +143,20 @@
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="content">
-                                            <a class="js-acc-btn" href="#">john doe</a>
+                                            <a class="js-acc-btn" href="#"><?php echo $_SESSION['nome']; ?></a>
                                         </div>
                                         <div class="account-dropdown js-dropdown">
                                             <div class="info clearfix">
                                                 <div class="content">
                                                     <h5 class="name">
-                                                        <a href="#">john doe</a>
+                                                        <a href="#"><?php echo $_SESSION['nome']; ?></a>
                                                     </h5>
-                                                    <span class="email">johndoe@example.com</span>
+                                                    <span class="email"><?php echo $_SESSION['email']; ?></span>
                                                 </div>
 
                                             <div class="account-dropdown__footer">
-                                                <a href="#">
-                                                    <i class="zmdi zmdi-power"></i>Logout</a>
+                                                <?php echo '<a href="connections/close.php">
+                                                    <i class="zmdi zmdi-power"></i>Logout</a>'?>
                                             </div>
                                         </div>
                                     </div>

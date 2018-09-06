@@ -74,10 +74,12 @@
                    <div class="col-12 col-md-9">
                        <select name="select" id="select" class="form-control">
                          <?php
+                         include 'connections/conn.php';
                            $opcoes = mysqli_query($conn, "SELECT id, nome from categprofissional");
                            while($eopcoes = mysqli_fetch_array($opcoes)){
                              echo'<option value="'.$eopcoes["id"].'">'.$eopcoes["nome"].'</option>';
                            }
+                           include 'connections/dconn.php';
                          ?>
                          <!--
                            <option value="0">Escritório</option>
