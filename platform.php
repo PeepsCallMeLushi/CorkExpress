@@ -47,15 +47,15 @@ validacao();
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="#">
-                    <img src="images/icon/logo.png" alt="Cool Admin" />
+                    <img src="images/icon/placeholder.png" alt="A imagem não funciona" />
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
-                        <li class="active has-sub">
+                        <li>
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-tachometer-alt"></i>Informações Pessoais</a>
+                                <i class="fas fa-copy"></i>Informações Pessoais</a>
                                 <ul class="list-unstyled navbar__sub-list js-sub-list">
                                     <li>
                                         <a href="#">Perfil</a>
@@ -66,11 +66,11 @@ validacao();
                                   </ul>
                         </li>
                         <?php
-                          if($_SESSION["departamento"]=='2'){
+                          if($_SESSION["departamento"]=='1'){
                             echo'
-                            <li class="active has-sub">
+                            <li>
                                 <a class="js-arrow" href="#">
-                                    <i class="fas fa-tachometer-alt"></i>Gestão de users</a>
+                                    <i class="fas fa-copy"></i>Gestão de users</a>
                                     <ul class="list-unstyled navbar__sub-list js-sub-list">
                                         <li>
                                             <a href="?an=1">Criação de utilizador</a>
@@ -79,6 +79,10 @@ validacao();
                                             <a href="?an=2">Listagem de utilizadores</a>
                                         </li>
                                       </ul>
+                            </li>
+                            <li>
+                                <a href="?an=4">
+                                    <i class="fas fa-table"></i>Categorias Profissionais</a>
                             </li>';
                           }
                          ?>
@@ -199,15 +203,15 @@ validacao();
                   break;
                   case '3':
                     // code...
-                    echo "Caso 3";
+                    include 'fragments\edituser.php';
                     break;
                     case '4':
                       // code...
-                      echo "Caso 4";
+                      include 'fragments\catprofs.php';
                       break;
                       case '5':
                         // code...
-                        echo "Caso 5";
+                        include 'fragments\catprofsedit.php';
                         break;
                 default:
                   // code...

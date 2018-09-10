@@ -1,5 +1,4 @@
-<form>
-   <div class="card">
+<div class="card">
        <div class="card-body card-block">
            <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                <div class="row form-group">
@@ -93,7 +92,6 @@
                        <input type="number" id="text-input" min="1" step="any" name="salario" placeholder="900000" class="form-control">
                    </div>
                </div>
-           </form>
        </div>
        <div class="card-footer">
            <button type="submit" class="btn btn-primary btn-sm" name="submitInfo">
@@ -108,8 +106,8 @@
 if(isset($_POST["submitInfo"])){
   include 'connections/conn.php';
   mysqli_query($conn, "INSERT INTO utilizador (nome_users, email, morada, nif, niss, nib, telemovel, datanasc, id_catprof, salario, password)
-  VALUES ('$_POST[nome_users]','$_POST[email]','$_POST[morada]','$_POST[nif]','$_POST[niss]','$_POST[nib]','$_POST[telemovel]',$_POST[datanasc],$_POST[id_catprof],$_POST[salario],'$_POST[nif]')");
-  echo '<meta http-equiv="refresh" content"=0;url=platform.php?an=1">';
+  VALUES ('$_POST[nome_users]','$_POST[email]','$_POST[morada]','$_POST[nif]','$_POST[niss]','$_POST[nib]','$_POST[telemovel]','$_POST[datanasc]','$_POST[id_catprof]','$_POST[salario]','$_POST[nif]')");
+  //echo '<meta http-equiv="refresh" content"=0;url=platform.php?an=1">';
   include 'connections/dconn.php';
 }
  ?>

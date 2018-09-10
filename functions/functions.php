@@ -29,4 +29,8 @@ function validacao(){
       echo '<meta http-equiv="refresh" content="0;url=index.php">';
     }
 }
+
+function obterValor($valor){
+  return $valor;
+}
  ?>

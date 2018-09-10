@@ -74,7 +74,7 @@ button {
 
 img {
     max-width: 100%;
-    height: auto;
+    height: 75px;
 }
 
 p {
@@ -307,7 +307,7 @@ section {
 }
 
 .main-content {
-    padding-top: 116px;
+    padding-top: 75px;
     min-height: 100vh;
 }
 
@@ -1225,6 +1225,7 @@ section {
 }
 
 .header-wrap {
+    float: right;
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;

@@ -38,18 +38,31 @@
                           echo '
                       </td>
                       <td>
-                      <button type="submit" class="btn btn-warning btn-sm" name="editInfo" value="'.$list["id_users"].'">
-                          Editar
-                      </button>
+                        <form method="post">
+                          <button type="submit" class="btn btn-warning btn-sm" name="editInfo" value="'.$list["id_users"].'">Editar</button>
+                        </form>
                       </td>
                       <td>
-                      <button type="submit" class="btn btn-danger btn-sm" name="deleteInfo">
+                      <form method="post">
+                      <button type="submit" class="btn btn-danger btn-sm" name="deleteInfo" value="'.$list["id_users"].'">
                           Apagar
                       </button>
+                      </form>
                       </td>
                   </tr>';
                 }
                 include 'connections/dconn.php';
+                if (isset($_POST["editInfo"])){
+                $_SESSION["editID"] = $_POST["editInfo"];
+                /*echo 'Este if funca e o id do user é:'.$_SESSION["editID"];*/
+                echo '<meta http-equiv="refresh" content="0;url=platform.php?an=3">';
+                }
+                if (isset($_POST["deleteInfo"])) {
+                  include 'connections/conn.php';
+                  mysqli_query($conn, "DELETE from utilizador where id_users = '$_POST[deleteInfo]'");
+                  echo '<meta http-equiv="refresh" content="0;url=platform.php?an=2">';
+                  include 'connections/dconn.php';
+                }
               ?>
             </tbody>
         </table>

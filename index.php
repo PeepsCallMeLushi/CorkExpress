@@ -45,7 +45,7 @@ require_once 'functions/functions.php';
                 <div class="login-wrap">
                     <div class="login-content">
                         <div class="login-logo">
-                                <img src="images/icon/logo.png" alt="CoolAdmin">
+                                <img src="images/icon/placeholder.png" alt="CoolAdmin">
                         </div>
                         <div class="login-form">
                             <form action="" method="post">
