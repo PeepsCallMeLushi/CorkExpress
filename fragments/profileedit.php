@@ -1,9 +1,9 @@
-<form method="post">
    <div class="card">
        <div class="card-body card-block">
 
            <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
              <?php
+              $erro="";
               include 'connections/conn.php';
               $edit = mysqli_fetch_array(mysqli_query($conn, "SELECT * from utilizador where id_users = '$_SESSION[iduser]'"));
               include 'connections/dconn.php';
@@ -99,21 +99,73 @@
                        <input type="number" id="text-input" min="1" step="any" name="salario" placeholder="900000" class="form-control"value="<?php echo ''.$edit["salario"].''?>"disabled>
                    </div>
                </div>
-           </form>
        </div>
        <div class="card-footer">
-           <button type="submit" class="btn btn-warning btn-sm" name="submitInfo">
-               <i class="fa fa-dot-circle-o"></i> Editar perfil
+           <button type="submit" class="btn btn-success btn-sm" name="submitInfo">
+               <i class="fa fa-dot-circle-o"></i> Submeter edição
            </button>
        </div>
  </form>
+ <div class="card">
+     <div class="card-body card-block">
+
+         <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+           <?php
+            include 'connections/conn.php';
+            $edit = mysqli_fetch_array(mysqli_query($conn, "SELECT * from utilizador where id_users = '$_SESSION[iduser]'"));
+            include 'connections/dconn.php';
+           ?>
+             <div class="row form-group">
+                 <div class="col col-md-3">
+                     <label for="text-input" class=" form-control-label">Palavra-chave Atual</label>
+                 </div>
+                 <div class="col-12 col-md-9">
+                     <input type="password" id="text-input" name="passAtual" placeholder="*********" class="form-control">
+                 </div>
+             </div>
+             <div class="row form-group">
+                 <div class="col col-md-3">
+                     <label for="text-input" class=" form-control-label">Palavra-chave Nova</label>
+                 </div>
+                 <div class="col-12 col-md-9">
+                     <input type="password" id="text-input" name="passNova" placeholder="*********" class="form-control">
+                 </div>
+             </div>
+             <div class="row form-group">
+                 <div class="col col-md-3">
+                     <label for="text-input" class=" form-control-label">Palavra-chave Nova (confirmação)</label>
+                 </div>
+                 <div class="col-12 col-md-9">
+                     <input type="password" id="text-input" name="passNovaC" placeholder="*********" class="form-control">
+                 </div>
+             </div>
+           </div>
+     <div class="card-footer">
+         <button type="submit" class="btn btn-success btn-sm" name="submitChange">
+             <i class="fa fa-dot-circle-o"></i> Submeter edição
+         </button>
+     </div>
+</form>
+
  <?php
 if(isset($_POST["submitInfo"])){
   include 'connections/conn.php';
-  mysqli_query($conn, "UPDATE utilizador set nome_users = '$_POST[nome_users]',
-    email ='$_POST[email]', morada = '$_POST[morada]', nif = '$_POST[nif]', niss = '$_POST[niss]', nib = '$_POST[nib]', telemovel = '$_POST[telemovel]', datanasc = '$_POST[datanasc]',
-    salario = '$_POST[salario]', password = '$_POST[password]' WHERE id_users = '$_SESSION[editID]'");
-  echo '<meta http-equiv="refresh" content="0;url=platform.php?an=2">';
+  mysqli_query($conn, "UPDATE utilizador set email ='$_POST[email]', morada = '$_POST[morada]', telemovel = '$_POST[telemovel]' WHERE id_users = '$_SESSION[iduser]'");
+  echo '<meta http-equiv="refresh" content="0;url=platform.php">';
   include 'connections/dconn.php';
+}
+if(isset($_POST["submitChange"])){
+  if(($_POST["passAtual"]==$edit["password"]) && ($_POST["passAtual"] != $_POST["passNova"]) && ($_POST["passNova"]==$_POST["passNovaC"])){
+    include 'connections/conn.php';
+    mysqli_query($conn, "UPDATE utilizador set password = '$_POST[passNova]' WHERE id_users = '$_SESSION[iduser]'");
+    echo '<meta http-equiv="refresh" content="0;url=platform.php">';
+    include 'connections/dconn.php';
+  }elseif ($_POST["passAtual"] == $_POST["passNova"]) {
+    echo 'A Palavra-chave atual e a Palavra-chave que tentou submeter são indênticas, tente outra!';
+  }elseif ($_POST["passNova"]!=$_POST["passNovaC"]) {
+    echo 'Por favor confirme a Palavra-chave';
+  }elseif ($_POST["passAtual"]!=$edit["password"]) {
+  echo 'Por favor coloque Palavra-chave atual correct';
+  }
 }
  ?>

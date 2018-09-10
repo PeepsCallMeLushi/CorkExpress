@@ -13,7 +13,7 @@ require_once 'functions/functions.php';
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>Login</title>
+    <title>コークエクスプレス！ 管理者のログイン</title>
 
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">
@@ -45,7 +45,7 @@ require_once 'functions/functions.php';
                 <div class="login-wrap">
                     <div class="login-content">
                         <div class="login-logo">
-                                <img src="images/icon/placeholder.png" alt="CoolAdmin">
+                                <img src="images/icon/placeholder3.png" alt="CoolAdmin">
                         </div>
                         <div class="login-form">
                             <form action="" method="post">

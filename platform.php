@@ -15,7 +15,7 @@ validacao();
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>コークエクスプレス - Welcome!</title>
+    <title>コークエクスプレス  ●  Welcome!</title>
     <?php include 'connections/conn.php'; ?>
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">

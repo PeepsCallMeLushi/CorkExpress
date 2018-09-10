@@ -10,7 +10,7 @@ Projecto do Farinha 2018
       * CRUD de Categorias profissionais
       * Faturação salarial (1 vez por mês)
         * Indicar o turno
-      * Processamento de Fárias (1 vez por ano)
+      * Processamento de Férias (1 vez por ano)
         * Depende do vencimento base, sem bonus
       * Subsidio de natal
         * feito em novembro
@@ -31,4 +31,3 @@ Projecto do Farinha 2018
         * NISS
       * Para alterar o NIB deve de pedir ao Admin
     * Ver recibos de vencimento
-    
