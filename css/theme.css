@@ -4420,11 +4420,11 @@ section {
 }
 
 .role.admin {
-    background: #fa4251;
+    background: #6dc066;
 }
 
 .role.user {
-    background: #00b5e9;
+    background: #6b6767;
 }
 
 .role.member {

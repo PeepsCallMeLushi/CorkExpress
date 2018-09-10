@@ -54,15 +54,31 @@ validacao();
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
                         <li class="active has-sub">
-                            <a class="js-arrow" href="?an=1">
-                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-tachometer-alt"></i>Informações Pessoais</a>
+                                <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                    <li>
+                                        <a href="#">Perfil</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Recibos</a>
+                                    </li>
+                                  </ul>
                         </li>
                         <?php
                           if($_SESSION["departamento"]=='2'){
                             echo'
                             <li class="active has-sub">
-                                <a class="js-arrow" href="?an=1">
+                                <a class="js-arrow" href="#">
                                     <i class="fas fa-tachometer-alt"></i>Gestão de users</a>
+                                    <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                        <li>
+                                            <a href="?an=1">Criação de utilizador</a>
+                                        </li>
+                                        <li>
+                                            <a href="?an=2">Listagem de utilizadores</a>
+                                        </li>
+                                      </ul>
                             </li>';
                           }
                          ?>
@@ -179,7 +195,7 @@ validacao();
                   break;
                 case '2':
                     // code...
-                  include 'any2.php';
+                  include 'fragments\userlist.php';
                   break;
                   case '3':
                     // code...
