@@ -307,6 +307,7 @@ section {
 }
 
 .main-content {
+  background-color: #fff;
     padding-top: 75px;
     min-height: 100vh;
 }
