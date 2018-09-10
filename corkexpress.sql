@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 10-Set-2018 às 21:30
+-- Generation Time: 10-Set-2018 às 23:47
 -- Versão do servidor: 10.1.35-MariaDB
 -- versão do PHP: 7.2.9
 
@@ -112,9 +112,11 @@ CREATE TABLE `utilizador` (
 --
 
 INSERT INTO `utilizador` (`id_users`, `nome_users`, `email`, `morada`, `nif`, `niss`, `nib`, `telemovel`, `datanasc`, `id_catprof`, `salario`, `password`) VALUES
-(2, 'ze', 'ze@ze.ze', 'ze', '123456789', 'ze', 'ze', '910000000', '1997-05-16', 1, 1, 'ze'),
+(2, 'ze', 'ze@ze.ze', 'ze', '123456789', 'ze', 'ze', '910000000', '1997-05-16', 1, 1, 'jose'),
 (3, 'beny', 'beny@djimail.com', 'beny', 'beny', 'beny', 'beny', '9100', '1994-10-20', 1, 1, 'beny'),
-(5, 'SuperMegaMachoInvencivelDoEspaço', 'boda@gaymail.com', 'YMCA', '123', '123', '123', '911775845', '0003-02-01', 4, 1000, '123');
+(5, 'SuperMegaMachoInvencivelDoEspaço', 'boda@gaymail.com', 'YMCA', '123', '123', '123', '910000001', '0003-02-01', 4, 1000, 'boda'),
+(17, 'Eum illo necessitatibus officia mollitia ad exerci', 'jazy@mailinator.com', 'Nisi mollitia ipsam voluptates est rerum ipsum ex aspernatur laboriosam suscipit ad nisi', '68', '69', '7', '+421-47-2', '1970-02-21', 6, 98, '68'),
+(20, 'Et aliquam ipsam et voluptate ea in deserunt ipsum', 'kuviwyli@mailinator.com', 'Incidunt sed voluptate occaecat vel debitis nisi qui enim animi vitae modi veritatis nostrum sint eu', '72', '58', '44', '+465-27-3', '1991-11-16', 6, 51, '72');
 
 --
 -- Indexes for dumped tables
@@ -175,7 +177,7 @@ ALTER TABLE `departamento`
 -- AUTO_INCREMENT for table `utilizador`
 --
 ALTER TABLE `utilizador`
-  MODIFY `id_users` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_users` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
