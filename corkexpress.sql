@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.8.3
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 10-Set-2018 às 18:53
--- Versão do servidor: 10.1.16-MariaDB
--- PHP Version: 5.6.24
+-- Generation Time: 10-Set-2018 às 21:30
+-- Versão do servidor: 10.1.35-MariaDB
+-- versão do PHP: 7.2.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -40,7 +42,30 @@ INSERT INTO `categprofissional` (`id_catprof`, `nome_catprof`, `id_departamento`
 (1, 'Operário de linha', 2),
 (2, 'Controlo de Qualidade', 2),
 (3, 'Finanças', 1),
-(4, 'Information Technologies', 1);
+(4, 'Information Technologies', 1),
+(6, 'Mecânicos De PLCs', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `cores`
+--
+
+CREATE TABLE `cores` (
+  `id` int(1) NOT NULL,
+  `Name` varchar(50) NOT NULL,
+  `logo` varchar(7) NOT NULL,
+  `header` varchar(7) NOT NULL,
+  `body` varchar(7) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `cores`
+--
+
+INSERT INTO `cores` (`id`, `Name`, `logo`, `header`, `body`) VALUES
+(1, 'Dark Mode', '#23272a', '#2c2f33', '#99aab5'),
+(2, 'Light Mode', '#f5f5f5', '#f5f5f5', '#ffffff');
 
 -- --------------------------------------------------------
 
@@ -87,7 +112,7 @@ CREATE TABLE `utilizador` (
 --
 
 INSERT INTO `utilizador` (`id_users`, `nome_users`, `email`, `morada`, `nif`, `niss`, `nib`, `telemovel`, `datanasc`, `id_catprof`, `salario`, `password`) VALUES
-(2, 'ze', 'ze@ze.ze', 'ze', '123456789', 'ze', 'ze', '910000000', '1997-05-16', 1, 1, '123456789'),
+(2, 'ze', 'ze@ze.ze', 'ze', '123456789', 'ze', 'ze', '910000000', '1997-05-16', 1, 1, 'ze'),
 (3, 'beny', 'beny@djimail.com', 'beny', 'beny', 'beny', 'beny', '9100', '1994-10-20', 1, 1, 'beny'),
 (5, 'SuperMegaMachoInvencivelDoEspaço', 'boda@gaymail.com', 'YMCA', '123', '123', '123', '911775845', '0003-02-01', 4, 1000, '123');
 
@@ -100,6 +125,12 @@ INSERT INTO `utilizador` (`id_users`, `nome_users`, `email`, `morada`, `nif`, `n
 --
 ALTER TABLE `categprofissional`
   ADD PRIMARY KEY (`id_catprof`);
+
+--
+-- Indexes for table `cores`
+--
+ALTER TABLE `cores`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `departamento`
@@ -126,17 +157,27 @@ ALTER TABLE `utilizador`
 -- AUTO_INCREMENT for table `categprofissional`
 --
 ALTER TABLE `categprofissional`
-  MODIFY `id_catprof` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_catprof` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `cores`
+--
+ALTER TABLE `cores`
+  MODIFY `id` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `departamento`
 --
 ALTER TABLE `departamento`
   MODIFY `id_depart` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `utilizador`
 --
 ALTER TABLE `utilizador`
   MODIFY `id_users` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

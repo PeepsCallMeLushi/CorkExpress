@@ -15,7 +15,7 @@ validacao();
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>Dashboard</title>
+    <title>コークエクスプレス - Welcome!</title>
     <?php include 'connections/conn.php'; ?>
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">
@@ -47,7 +47,7 @@ validacao();
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="#">
-                    <img src="images/icon/placeholder.png" alt="A imagem não funciona" />
+                    <img src="images/icon/placeholder2.png" alt="A imagem não funciona" />
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
@@ -58,7 +58,7 @@ validacao();
                                 <i class="fas fa-copy"></i>Informações Pessoais</a>
                                 <ul class="list-unstyled navbar__sub-list js-sub-list">
                                     <li>
-                                        <a href="#">Perfil</a>
+                                        <a href="?an=6">Perfil</a>
                                     </li>
                                     <li>
                                         <a href="#">Recibos</a>
@@ -73,7 +73,7 @@ validacao();
                                     <i class="fas fa-copy"></i>Gestão de users</a>
                                     <ul class="list-unstyled navbar__sub-list js-sub-list">
                                         <li>
-                                            <a href="?an=1">Criação de utilizador</a>
+                                            <a href="?an=1">Criação de utilizadores</a>
                                         </li>
                                         <li>
                                             <a href="?an=2">Listagem de utilizadores</a>
@@ -86,66 +86,6 @@ validacao();
                             </li>';
                           }
                          ?>
-                        <li>
-                            <a href="chart.html">
-                                <i class="fas fa-chart-bar"></i>Charts</a>
-                        </li>
-                        <li>
-                            <a href="table.html">
-                                <i class="fas fa-table"></i>Tables</a>
-                        </li>
-                        <li>
-                            <a href="form.html">
-                                <i class="far fa-check-square"></i>Forms</a>
-                        </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-copy"></i>Pages</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="login.html">Login</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-desktop"></i>UI Elements</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="button.html">Button</a>
-                                </li>
-                                <li>
-                                    <a href="badge.html">Badges</a>
-                                </li>
-                                <li>
-                                    <a href="tab.html">Tabs</a>
-                                </li>
-                                <li>
-                                    <a href="card.html">Cards</a>
-                                </li>
-                                <li>
-                                    <a href="alert.html">Alerts</a>
-                                </li>
-                                <li>
-                                    <a href="progress-bar.html">Progress Bars</a>
-                                </li>
-                                <li>
-                                    <a href="modal.html">Modals</a>
-                                </li>
-                                <li>
-                                    <a href="switch.html">Switchs</a>
-                                </li>
-                                <li>
-                                    <a href="grid.html">Grids</a>
-                                </li>
-                                <li>
-                                    <a href="fontawesome.html">Fontawesome Icon</a>
-                                </li>
-                                <li>
-                                    <a href="typo.html">Typography</a>
-                                </li>
-                            </ul>
-                        </li>
                     </ul>
                 </nav>
             </div>
@@ -213,8 +153,17 @@ validacao();
                         // code...
                         include 'fragments\catprofsedit.php';
                         break;
+                        case '6':
+                          // code...
+                          include 'fragments\profile.php';
+                          break;
+                          case '7':
+                            // code...
+                            include 'fragments\profileedit.php';
+                            break;
                 default:
                   // code...
+                  include 'fragments\profile.php';
                   break;
               }
                ?>

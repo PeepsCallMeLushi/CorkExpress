@@ -5,7 +5,7 @@
            <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
              <?php
               include 'connections/conn.php';
-              $edit = mysqli_fetch_array(mysqli_query($conn, "SELECT * from utilizador where id_users = '$_SESSION[editID]'"));
+              $edit = mysqli_fetch_array(mysqli_query($conn, "SELECT * from utilizador where id_users = '$_SESSION[iduser]'"));
               include 'connections/dconn.php';
              ?>
                <div class="row form-group">
@@ -13,7 +13,7 @@
                        <label for="text-input" class=" form-control-label">Nome</label>
                    </div>
                    <div class="col-12 col-md-9">
-                       <input type="text" id="text-input" name="nome_users" placeholder="Nome do colaborador" class="form-control" value="<?php echo ''.$edit["nome_users"].''?>">
+                       <input type="text" id="text-input" name="nome_users" placeholder="Nome do colaborador" class="form-control" value="<?php echo ''.$edit["nome_users"].''?>"disabled>
                    </div>
                </div>
                <div class="row form-group">
@@ -37,7 +37,7 @@
                        <label for="text-input" class=" form-control-label">NIF</label>
                    </div>
                    <div class="col-12 col-md-9">
-                       <input type="text" id="text-input" name="nif" placeholder="NIF do colaborador" class="form-control" value="<?php echo ''.$edit["nif"].''?>">
+                       <input type="text" id="text-input" name="nif" placeholder="NIF do colaborador" class="form-control" value="<?php echo ''.$edit["nif"].''?>"disabled>
                    </div>
                </div>
                <div class="row form-group">
@@ -45,7 +45,7 @@
                        <label for="text-input" class=" form-control-label">NISS</label>
                    </div>
                    <div class="col-12 col-md-9">
-                       <input type="text" id="text-input" name="niss" placeholder="NISS do colaborador" class="form-control" value="<?php echo ''.$edit["niss"].''?>">
+                       <input type="text" id="text-input" name="niss" placeholder="NISS do colaborador" class="form-control" value="<?php echo ''.$edit["niss"].''?>"disabled>
                    </div>
                </div>
                <div class="row form-group">
@@ -53,7 +53,7 @@
                        <label for="text-input" class=" form-control-label">NIB</label>
                    </div>
                    <div class="col-12 col-md-9">
-                       <input type="text" id="text-input" name="nib" placeholder="NIB do colaborador" class="form-control" value="<?php echo ''.$edit["nib"].''?>">
+                       <input type="text" id="text-input" name="nib" placeholder="NIB do colaborador" class="form-control" value="<?php echo ''.$edit["nib"].''?>"disabled>
                    </div>
                </div>
                <div class="row form-group">
@@ -69,7 +69,7 @@
                        <label for="text-input" class=" form-control-label">Data de nascimento</label>
                    </div>
                    <div class="col-12 col-md-9">
-                       <input type="date" id="text-input" name="datanasc" placeholder="" class="form-control" value="<?php echo ''.$edit["datanasc"].''?>">
+                       <input type="date" id="text-input" name="datanasc" placeholder="" class="form-control" value="<?php echo ''.$edit["datanasc"].''?>" disabled>
                    </div>
                </div>
                <!--É A MERDA DE UM WHILE-->
@@ -96,25 +96,14 @@
                        <label for="text-input" class=" form-control-label">Salário</label>
                    </div>
                    <div class="col-12 col-md-9">
-                       <input type="number" id="text-input" min="1" step="any" name="salario" placeholder="900000" class="form-control"value="<?php echo ''.$edit["salario"].''?>">
-                   </div>
-               </div>
-               <div class="row form-group">
-                   <div class="col col-md-3">
-                       <label for="text-input" class=" form-control-label">Palavra-chave</label>
-                   </div>
-                   <div class="col-12 col-md-9">
-                       <input type="text" id="text-input" name="password" placeholder="Nome do colaborador" class="form-control" value="<?php echo ''.$edit["password"].''?>">
+                       <input type="number" id="text-input" min="1" step="any" name="salario" placeholder="900000" class="form-control"value="<?php echo ''.$edit["salario"].''?>"disabled>
                    </div>
                </div>
            </form>
        </div>
        <div class="card-footer">
-           <button type="submit" class="btn btn-primary btn-sm" name="submitInfo">
-               <i class="fa fa-dot-circle-o"></i> Submit
-           </button>
-           <button type="reset" class="btn btn-danger btn-sm" name="resetInfo">
-               <i class="fa fa-ban"></i> Reset
+           <button type="submit" class="btn btn-warning btn-sm" name="submitInfo">
+               <i class="fa fa-dot-circle-o"></i> Editar perfil
            </button>
        </div>
  </form>
