@@ -127,7 +127,7 @@ if (isset($_POST["submitInfo"])){
   include 'connections/conn.php';
   mysqli_query($conn, "INSERT INTO recibos(id_trabalhador, ss_mult, ss_val, irs_mult, irs_val, turno_nome, turno_mult, isFerias, isSubNat, total)
   VALUES ('$edit[id_users]', '$ss[mult_func]', '$valorSS', '$irs[mult]', '$valorIRS', '$turn[nome_turno]', '$turn[mult]', 0, 0, '$salLiq')");
-  echo '<meta http-equiv="refresh" content"=0;url=platform.php?an=7">';
   include 'connections/dconn.php';
+  echo '<meta http-equiv="refresh" content"=0;url=platform.php?an=7">';
 }
  ?>

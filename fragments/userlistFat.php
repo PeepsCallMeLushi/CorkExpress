@@ -13,7 +13,7 @@
             <tbody>
               <?php
               include 'connections/conn.php';
-                $users = mysqli_query($conn, "SELECT utilizador.id_users ,utilizador.nome_users, utilizador.email, categprofissional.id_departamento ,categprofissional.nome_catprof from utilizador
+                $users =mysqli_query($conn, "SELECT utilizador.id_users ,utilizador.nome_users, utilizador.email, categprofissional.id_departamento ,categprofissional.nome_catprof from utilizador
                 left join categprofissional on categprofissional.id_catprof = utilizador.id_catprof");
                 while($list = mysqli_fetch_array($users)){
                   /*echo'<option value="'.$eopcoes["id_catprof"].'">'.$eopcoes["nome_catprof"].'</option>';*/
@@ -36,26 +36,52 @@
                             echo '<span class="role user">'.$list["nome_catprof"].'</span>';
                           }
                           echo '
-                      </td>
-                      <td>
+                      </td>';
+                      $fatMes=mysqli_fetch_array(mysqli_query($conn,
+                      "SELECT (MONTH(CURRENT_DATE)-MONTH(data)) as diff from recibos where id_trabalhador = '$list[id_users]' order by data desc limit 1"));
+                      if ($fatMes["diff"] == 0){
+                        echo '<td>Mês Faturado</td>';
+
+                      }else {
+                        echo'
+                        <td>
+                          <form method="post">
+                            <button type="submit" class="btn btn-success btn-sm" name="mes" value="'.$list["id_users"].'">Mês</button>
+                          </form>
+                        </td>';
+                      }
+                      $fatAno=mysqli_fetch_array(mysqli_query($conn,
+                      "SELECT (YEAR(CURRENT_DATE)-YEAR(data)) as diff from recibos where id_trabalhador = '$list[id_users]' and isFerias = 1 order by data desc limit 1"));
+                      if ($fatAno["diff"] == 0){
+                        echo '<td>Férias Faturadas</td>';
+                      }else {
+                        echo'<td>
                         <form method="post">
-                          <button type="submit" class="btn btn-success btn-sm" name="mes" value="'.$list["id_users"].'">Mês</button>
+                        <button type="submit" class="btn btn-primary btn-sm" name="ferias" value="'.$list["id_users"].'">
+                            Férias
+                        </button>
                         </form>
-                      </td>
-                      <td>
-                      <form method="post">
-                      <button type="submit" class="btn btn-primary btn-sm" name="ferias" value="'.$list["id_users"].'">
-                          Férias
-                      </button>
-                      </form>
-                      </td>
+                        </td>';
+                      }
+                      $fatNat = mysqli_fetch_array(mysqli_query($conn, "SELECT MONTH(CURRENT_DATE) as diff"));
+                      $fatNatAno=mysqli_fetch_array(mysqli_query($conn,
+                      "SELECT (YEAR(CURRENT_DATE)-YEAR(data)) as diff from recibos where id_trabalhador = '$list[id_users]' and isSubNat = 1 order by data desc limit 1"));
+                      if ($fatNat["diff"] == 11 && $fatNatAno["diff"] != 0 ){
+                      echo'
                       <td>
                       <form method="post">
                       <button type="submit" class="btn btn-danger btn-sm" name="natal" value="'.$list["id_users"].'">
-                          Subcidio de natal
+                          Subsidio de natal
                       </button>
                       </form>
-                      </td>
+                      </td>';
+                    }elseif ($fatNat["diff"] == 11 && $fatNatAno["diff"] == 0 ){
+                      echo '<td>Subsidio de natal já processado</td>';
+                    }else{
+                      echo '<td>Disponível em novembro</td>';
+                    }
+
+                      echo'
                   </tr>';
                 }
                 include 'connections/dconn.php';
