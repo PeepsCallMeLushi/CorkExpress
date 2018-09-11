@@ -69,7 +69,7 @@ validacao();
                                       <a href="platform.php">Perfil</a>
                                   </li>
                                   <li>
-                                      <a href="#">Recibos</a>
+                                      <a href="?an=9">Recibos</a>
                                   </li>
                                 </ul>
                       </li>
@@ -93,8 +93,16 @@ validacao();
                                   <i class="fas fa-table"></i>Categorias Profissionais</a>
                           </li>
                           <li>
-                              <a href="?an=7">
+                              <a class="js-arrow" href="#">
                                   <i class="fas fa-calendar-alt"></i>Faturação</a>
+                                  <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                    <li>
+                                        <a href="?an=7">Emitir Recibo</a>
+                                        </li>
+                                        <li>
+                                      <a href="?an=11">Listagem de Recibos</a>
+                                  </li>
+                                    </ul>
                           </li>';
                         }
                        ?>
@@ -121,7 +129,7 @@ validacao();
                                         <a href="platform.php">Perfil</a>
                                     </li>
                                     <li>
-                                        <a href="#">Recibos</a>
+                                        <a href="?an=9">Recibos</a>
                                     </li>
                                   </ul>
                         </li>
@@ -145,8 +153,16 @@ validacao();
                                     <i class="fas fa-table"></i>Categorias Profissionais</a>
                             </li>
                             <li>
-                                <a href="?an=7">
+                                <a class="js-arrow" href="#">
                                     <i class="fas fa-calendar-alt"></i>Faturação</a>
+                                    <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                        <li>
+                                            <a href="?an=7">Emitir Recibo</a>
+                                        </li>
+                                        <li>
+                                            <a href="?an=11">Listagem de Recibos</a>
+                                        </li>
+                                      </ul>
                             </li>';
                           }
                          ?>
@@ -229,6 +245,18 @@ validacao();
                               // code...
                               include 'fragments\faturas.php';
                               break;
+                              case '9':
+                                // code...
+                                include 'fragments\faturaslist.php';
+                                break;
+                                case '10':
+                                  // code...
+                                  include 'fragments\faturasSingular.php';
+                                  break;
+                                  case '11':
+                                    // code...
+                                    include 'fragments\faturaslistempresa.php';
+                                    break;
                 default:
                   // code...
                   include 'fragments\profile.php';
