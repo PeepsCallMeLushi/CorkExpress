@@ -61,7 +61,10 @@
                 include 'connections/dconn.php';
                 if (isset($_POST["mes"])){
                 $_SESSION["editID"] = $_POST["mes"];
+<<<<<<< HEAD
                 $_SESSION["turnoID"] = 0;
+=======
+>>>>>>> aa454a43834f261a4b2756c6875ddb29c2bd956d
                 /*echo 'Este if funca e o id do user é:'.$_SESSION["editID"];*/
                 echo '<meta http-equiv="refresh" content="0;url=platform.php?an=8">';
                 }
