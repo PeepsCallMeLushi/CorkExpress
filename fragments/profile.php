@@ -13,7 +13,7 @@
                        <label for="text-input" class=" form-control-label">Nome</label>
                    </div>
                    <div class="col-12 col-md-9">
-                       <input type="text" id="text-input" name="nome_users" placeholder="Nome do colaborador" class="form-control" value="<?php echo ''.$edit["nome_users"].''?>"disabled>
+                       <input type="text" id="text-input" name="nome_users" placeholder="Nome do colaborador" class="form-control" value="<?php echo ''.$edit["nome_users"].''?>" disabled>
                    </div>
                </div>
                <div class="row form-group">
@@ -102,7 +102,7 @@
            </form>
        </div>
        <div class="card-footer">
-         <a href="?an=7">
+         <a href="?an=6">
            <button type="submit" class="btn btn-warning btn-sm" name="submitInfo">
                <i class="fa fa-dot-circle-o"></i> Editar perfil
            </button>

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 10-Set-2018 às 23:47
--- Versão do servidor: 10.1.35-MariaDB
--- versão do PHP: 7.2.9
+-- Generation Time: Sep 11, 2018 at 04:54 AM
+-- Server version: 10.1.35-MariaDB
+-- PHP Version: 7.2.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `categprofissional`
+-- Table structure for table `categprofissional`
 --
 
 CREATE TABLE `categprofissional` (
@@ -35,7 +35,7 @@ CREATE TABLE `categprofissional` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `categprofissional`
+-- Dumping data for table `categprofissional`
 --
 
 INSERT INTO `categprofissional` (`id_catprof`, `nome_catprof`, `id_departamento`) VALUES
@@ -48,7 +48,7 @@ INSERT INTO `categprofissional` (`id_catprof`, `nome_catprof`, `id_departamento`
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `cores`
+-- Table structure for table `cores`
 --
 
 CREATE TABLE `cores` (
@@ -60,7 +60,7 @@ CREATE TABLE `cores` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `cores`
+-- Dumping data for table `cores`
 --
 
 INSERT INTO `cores` (`id`, `Name`, `logo`, `header`, `body`) VALUES
@@ -70,7 +70,7 @@ INSERT INTO `cores` (`id`, `Name`, `logo`, `header`, `body`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `departamento`
+-- Table structure for table `departamento`
 --
 
 CREATE TABLE `departamento` (
@@ -79,7 +79,7 @@ CREATE TABLE `departamento` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `departamento`
+-- Dumping data for table `departamento`
 --
 
 INSERT INTO `departamento` (`id_depart`, `nome_depart`) VALUES
@@ -89,7 +89,93 @@ INSERT INTO `departamento` (`id_depart`, `nome_depart`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `utilizador`
+-- Table structure for table `irs`
+--
+
+CREATE TABLE `irs` (
+  `id` int(11) NOT NULL,
+  `min` int(11) NOT NULL,
+  `max` int(11) NOT NULL,
+  `mult` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `irs`
+--
+
+INSERT INTO `irs` (`id`, `min`, `max`, `mult`) VALUES
+(1, 0, 550, 0.08),
+(2, 551, 999, 0.09),
+(3, 1000, 1499, 0.1),
+(4, 1500, 0, 0.12);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `recibos`
+--
+
+CREATE TABLE `recibos` (
+  `id` int(11) NOT NULL,
+  `id_trabalhador` int(11) NOT NULL,
+  `ss` int(1) NOT NULL,
+  `irs` int(1) NOT NULL,
+  `turno` int(1) NOT NULL,
+  `dias` int(2) NOT NULL,
+  `isFerias` int(1) NOT NULL,
+  `isSubNat` int(1) NOT NULL,
+  `total` double NOT NULL,
+  `data` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `segurancasocial`
+--
+
+CREATE TABLE `segurancasocial` (
+  `id` int(11) NOT NULL,
+  `min` int(11) NOT NULL,
+  `max` int(11) NOT NULL,
+  `mult_func` double NOT NULL,
+  `mult_emp` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `segurancasocial`
+--
+
+INSERT INTO `segurancasocial` (`id`, `min`, `max`, `mult_func`, `mult_emp`) VALUES
+(1, 0, 550, 0.11, 0.11),
+(2, 551, 1099, 0.11, 0.12),
+(3, 1100, 0, 0.11, 0.13);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `turno`
+--
+
+CREATE TABLE `turno` (
+  `id` int(11) NOT NULL,
+  `nome_turno` varchar(20) NOT NULL,
+  `mult` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `turno`
+--
+
+INSERT INTO `turno` (`id`, `nome_turno`, `mult`) VALUES
+(1, 'manhã', 0.01),
+(2, 'tarde', 0.015),
+(3, 'noite', 0.03);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `utilizador`
 --
 
 CREATE TABLE `utilizador` (
@@ -108,15 +194,13 @@ CREATE TABLE `utilizador` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `utilizador`
+-- Dumping data for table `utilizador`
 --
 
 INSERT INTO `utilizador` (`id_users`, `nome_users`, `email`, `morada`, `nif`, `niss`, `nib`, `telemovel`, `datanasc`, `id_catprof`, `salario`, `password`) VALUES
 (2, 'ze', 'ze@ze.ze', 'ze', '123456789', 'ze', 'ze', '910000000', '1997-05-16', 1, 1, 'jose'),
 (3, 'beny', 'beny@djimail.com', 'beny', 'beny', 'beny', 'beny', '9100', '1994-10-20', 1, 1, 'beny'),
-(5, 'SuperMegaMachoInvencivelDoEspaço', 'boda@gaymail.com', 'YMCA', '123', '123', '123', '910000001', '0003-02-01', 4, 1000, 'boda'),
-(17, 'Eum illo necessitatibus officia mollitia ad exerci', 'jazy@mailinator.com', 'Nisi mollitia ipsam voluptates est rerum ipsum ex aspernatur laboriosam suscipit ad nisi', '68', '69', '7', '+421-47-2', '1970-02-21', 6, 98, '68'),
-(20, 'Et aliquam ipsam et voluptate ea in deserunt ipsum', 'kuviwyli@mailinator.com', 'Incidunt sed voluptate occaecat vel debitis nisi qui enim animi vitae modi veritatis nostrum sint eu', '72', '58', '44', '+465-27-3', '1991-11-16', 6, 51, '72');
+(5, 'SuperMegaMachoInvencivelDoEspaço', 'boda@gaymail.com', 'YMCA', '123', '123', '123', '910000001', '0003-02-01', 4, 1000, 'boda');
 
 --
 -- Indexes for dumped tables
@@ -139,6 +223,30 @@ ALTER TABLE `cores`
 --
 ALTER TABLE `departamento`
   ADD PRIMARY KEY (`id_depart`);
+
+--
+-- Indexes for table `irs`
+--
+ALTER TABLE `irs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `recibos`
+--
+ALTER TABLE `recibos`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `segurancasocial`
+--
+ALTER TABLE `segurancasocial`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `turno`
+--
+ALTER TABLE `turno`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `utilizador`
@@ -172,6 +280,30 @@ ALTER TABLE `cores`
 --
 ALTER TABLE `departamento`
   MODIFY `id_depart` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `irs`
+--
+ALTER TABLE `irs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `recibos`
+--
+ALTER TABLE `recibos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `segurancasocial`
+--
+ALTER TABLE `segurancasocial`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `turno`
+--
+ALTER TABLE `turno`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `utilizador`

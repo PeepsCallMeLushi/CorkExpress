@@ -65,7 +65,7 @@ require_once 'functions/functions.php';
                                         <a href="#">Forgotten Password?</a>
                                     </label>
                                 </div>
-                                <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit" name="entrar">sign in</button>
+                                <button class="au-btn au-btn--block au-btn--blue m-b-20" type="submit" name="entrar">sign in</button>
                             </form>
                             <?php
                             if(isset($_POST["entrar"])){
