@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 11, 2018 at 04:54 AM
--- Server version: 10.1.35-MariaDB
--- PHP Version: 7.2.9
+-- Generation Time: 11-Set-2018 às 23:50
+-- Versão do servidor: 10.1.35-MariaDB
+-- versão do PHP: 7.2.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categprofissional`
+-- Estrutura da tabela `categprofissional`
 --
 
 CREATE TABLE `categprofissional` (
@@ -35,7 +35,7 @@ CREATE TABLE `categprofissional` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `categprofissional`
+-- Extraindo dados da tabela `categprofissional`
 --
 
 INSERT INTO `categprofissional` (`id_catprof`, `nome_catprof`, `id_departamento`) VALUES
@@ -48,7 +48,7 @@ INSERT INTO `categprofissional` (`id_catprof`, `nome_catprof`, `id_departamento`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cores`
+-- Estrutura da tabela `cores`
 --
 
 CREATE TABLE `cores` (
@@ -60,7 +60,7 @@ CREATE TABLE `cores` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `cores`
+-- Extraindo dados da tabela `cores`
 --
 
 INSERT INTO `cores` (`id`, `Name`, `logo`, `header`, `body`) VALUES
@@ -70,7 +70,7 @@ INSERT INTO `cores` (`id`, `Name`, `logo`, `header`, `body`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `departamento`
+-- Estrutura da tabela `departamento`
 --
 
 CREATE TABLE `departamento` (
@@ -79,7 +79,7 @@ CREATE TABLE `departamento` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `departamento`
+-- Extraindo dados da tabela `departamento`
 --
 
 INSERT INTO `departamento` (`id_depart`, `nome_depart`) VALUES
@@ -89,7 +89,7 @@ INSERT INTO `departamento` (`id_depart`, `nome_depart`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `irs`
+-- Estrutura da tabela `irs`
 --
 
 CREATE TABLE `irs` (
@@ -100,38 +100,79 @@ CREATE TABLE `irs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `irs`
+-- Extraindo dados da tabela `irs`
 --
 
 INSERT INTO `irs` (`id`, `min`, `max`, `mult`) VALUES
 (1, 0, 550, 0.08),
-(2, 551, 999, 0.09),
-(3, 1000, 1499, 0.1),
-(4, 1500, 0, 0.12);
+(2, 550, 999, 0.09),
+(3, 999, 1499, 0.1),
+(4, 1499, 2147483647, 0.12);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `recibos`
+-- Estrutura da tabela `meses`
+--
+
+CREATE TABLE `meses` (
+  `id` int(11) NOT NULL,
+  `mes` varchar(20) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Extraindo dados da tabela `meses`
+--
+
+INSERT INTO `meses` (`id`, `mes`) VALUES
+(1, 'Janeiro'),
+(2, 'Fevereiro'),
+(3, 'Março'),
+(4, 'Abril'),
+(5, 'Maio'),
+(6, 'Junho'),
+(7, 'Julho'),
+(8, 'Agosto'),
+(9, 'Setembro'),
+(10, 'Outubro'),
+(11, 'Novembro'),
+(12, 'Dezembro');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `recibos`
 --
 
 CREATE TABLE `recibos` (
   `id` int(11) NOT NULL,
   `id_trabalhador` int(11) NOT NULL,
-  `ss` int(1) NOT NULL,
-  `irs` int(1) NOT NULL,
-  `turno` int(1) NOT NULL,
-  `dias` int(2) NOT NULL,
+  `ss_mult` double NOT NULL,
+  `ss_val` double NOT NULL,
+  `irs_mult` double NOT NULL,
+  `irs_val` double NOT NULL,
+  `turno_nome` varchar(20) NOT NULL,
+  `turno_mult` double NOT NULL,
   `isFerias` int(1) NOT NULL,
   `isSubNat` int(1) NOT NULL,
   `total` double NOT NULL,
   `data` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Extraindo dados da tabela `recibos`
+--
+
+INSERT INTO `recibos` (`id`, `id_trabalhador`, `ss_mult`, `ss_val`, `irs_mult`, `irs_val`, `turno_nome`, `turno_mult`, `isFerias`, `isSubNat`, `total`, `data`) VALUES
+(1, 2, 0.11, 0.1111, 0.08, 0.0808, 'manhã', 0.01, 0, 0, 0.8181, '2018-09-11 17:53:56'),
+(4, 5, 0.11, 113.3, 0.1, 103, 'noite', 0.03, 0, 0, 813.7, '2018-09-11 17:58:10'),
+(8, 3, 0, 0, 0, 0, '', 0, 0, 0, 0, '2018-08-15 23:00:00'),
+(11, 5, 0, 0, 0, 0, '', 0, 1, 0, 0, '2017-10-26 21:29:58');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `segurancasocial`
+-- Estrutura da tabela `segurancasocial`
 --
 
 CREATE TABLE `segurancasocial` (
@@ -143,18 +184,18 @@ CREATE TABLE `segurancasocial` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `segurancasocial`
+-- Extraindo dados da tabela `segurancasocial`
 --
 
 INSERT INTO `segurancasocial` (`id`, `min`, `max`, `mult_func`, `mult_emp`) VALUES
 (1, 0, 550, 0.11, 0.11),
 (2, 551, 1099, 0.11, 0.12),
-(3, 1100, 0, 0.11, 0.13);
+(3, 1100, 2147483647, 0.11, 0.13);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `turno`
+-- Estrutura da tabela `turno`
 --
 
 CREATE TABLE `turno` (
@@ -164,7 +205,7 @@ CREATE TABLE `turno` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `turno`
+-- Extraindo dados da tabela `turno`
 --
 
 INSERT INTO `turno` (`id`, `nome_turno`, `mult`) VALUES
@@ -175,7 +216,7 @@ INSERT INTO `turno` (`id`, `nome_turno`, `mult`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `utilizador`
+-- Estrutura da tabela `utilizador`
 --
 
 CREATE TABLE `utilizador` (
@@ -194,7 +235,7 @@ CREATE TABLE `utilizador` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `utilizador`
+-- Extraindo dados da tabela `utilizador`
 --
 
 INSERT INTO `utilizador` (`id_users`, `nome_users`, `email`, `morada`, `nif`, `niss`, `nib`, `telemovel`, `datanasc`, `id_catprof`, `salario`, `password`) VALUES
@@ -228,6 +269,12 @@ ALTER TABLE `departamento`
 -- Indexes for table `irs`
 --
 ALTER TABLE `irs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `meses`
+--
+ALTER TABLE `meses`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -288,10 +335,16 @@ ALTER TABLE `irs`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `meses`
+--
+ALTER TABLE `meses`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
 -- AUTO_INCREMENT for table `recibos`
 --
 ALTER TABLE `recibos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `segurancasocial`
