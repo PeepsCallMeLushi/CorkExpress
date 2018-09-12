@@ -2,6 +2,9 @@
 require_once 'functions/functions.php';
 session_start();
 validacao();
+include 'connections/conn.php';
+$noti = mysqli_fetch_array(mysqli_query($conn, "SELECT count(estado) as num from pedidos where estado = 0"));
+include 'connections/dconn.php';
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +19,6 @@ validacao();
 
     <!-- Title Page-->
     <title>コークエクスプレス  ●  Welcome!</title>
-    <?php include 'connections/conn.php'; ?>
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">
     <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
@@ -77,6 +79,7 @@ validacao();
                         if($_SESSION["departamento"]=='1'){
                           echo'
                           <li>
+                          <div class="noti__item"><span class="quantity">'.$noti["num"].'</span></div>
                               <a class="js-arrow" href="#">
                                   <i class="fas fa-copy"></i>Gestão de utilizadores</a>
                                   <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
@@ -85,6 +88,12 @@ validacao();
                                       </li>
                                       <li>
                                           <a href="?an=2">Listagem de utilizadores</a>
+                                      </li>
+                                      <li>
+                                      <div class="noti__item">
+                                          <a href="?an=15">Pedidos</a>
+                                          <span class="quantity">'.$noti["num"].'</span>
+                                          </div>
                                       </li>
                                     </ul>
                           </li>
@@ -140,14 +149,22 @@ validacao();
                           if($_SESSION["departamento"]=='1'){
                             echo'
                             <li>
+                              <div class="noti__item"><span class="quantity">'.$noti["num"].'</span></div>
                                 <a class="js-arrow" href="#">
-                                    <i class="fas fa-copy"></i>Gestão de utilizadores</a>
+                                    <i class=" fas fa-copy"></i>Gestão de utilizadores</a>
+
                                     <ul class="list-unstyled navbar__sub-list js-sub-list">
                                         <li>
                                             <a href="?an=1">Criação de utilizadores</a>
                                         </li>
                                         <li>
                                             <a href="?an=2">Listagem de utilizadores</a>
+                                        </li>
+                                        <li>
+                                        <div class="noti__item">
+                                            <a href="?an=15">Pedidos</a>
+                                            <span class="quantity">'.$noti["num"].'</span>
+                                            </div>
                                         </li>
                                       </ul>
                             </li>

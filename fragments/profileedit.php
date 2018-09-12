@@ -50,10 +50,21 @@
                </div>
                <div class="row form-group">
                    <div class="col col-md-3">
-                       <label for="text-input" class=" form-control-label">NIB</label>
+                       <label for="text-input" class=" form-control-label">NIB Atual</label>
                    </div>
-                   <div class="col-12 col-md-9">
-                       <input type="text" id="text-input" name="nib" placeholder="NIB do colaborador" class="form-control" value="<?php echo ''.$edit["nib"].''?>"disabled>
+                   <div class="col col-md-3">
+                       <input type="text" id="text-input" name="nibCurrente" placeholder="NIB do colaborador" class="form-control" value="<?php echo ''.$edit["nib"].''?>"disabled>
+                   </div>
+                   <div class="col col-md-1">
+                       <label for="text-input" class=" form-control-label">NIB Novo</label>
+                   </div>
+                   <div class="col col-md-3">
+                       <input type="text" id="text-input" name="nibNovo" placeholder="Preencha caso deseja alterar o seu NIB" class="form-control" >
+                   </div>
+                   <div class="col col-md-2">
+                     <button type="submit" class="btn btn-warning btn-sm" name="nibChange" value="<?php echo ''.$edit["nib"].''?>">
+                         <i class="fa fa-dot-circle-o"></i> Submeter
+                     </button>
                    </div>
                </div>
                <div class="row form-group">
@@ -167,5 +178,11 @@ if(isset($_POST["submitChange"])){
   }elseif ($_POST["passAtual"]!=$edit["password"]) {
   echo 'Por favor coloque Palavra-chave atual correct';
   }
+}
+if(isset($_POST["nibChange"])){
+  include 'connections/conn.php';
+  mysqli_query($conn, "INSERT INTO pedidos(id_user, nib_atual, nib_novo, estado) VALUES ('$edit[id_users]','$_POST[nibChange]','$_POST[nibNovo]', 0)");
+  include 'connections/dconn.php';
+  echo '<meta http-equiv="refresh" content="0;url=platform.php">';
 }
  ?>
