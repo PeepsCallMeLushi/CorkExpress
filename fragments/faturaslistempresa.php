@@ -1,6 +1,6 @@
 <div class="user-data m-b-30">
     <h3 class="title-3 m-b-30">
-        <i class="zmdi zmdi-account-calendar"></i>Listagem de utilizadores</h3>
+        <i class="zmdi zmdi-account-calendar"></i>Listagem de recibos</h3>
     <div class="table-responsive table-data">
         <table class="table">
             <thead>
@@ -16,7 +16,7 @@
             <tbody>
               <?php
               include 'connections/conn.php';
-                $users = mysqli_query($conn, "SELECT * from recibos");
+                $users = mysqli_query($conn, "SELECT * from recibos order by data desc");
                 while($list = mysqli_fetch_array($users)){
                   /*echo'<option value="'.$eopcoes["id_catprof"].'">'.$eopcoes["nome_catprof"].'</option>';*/
                   echo

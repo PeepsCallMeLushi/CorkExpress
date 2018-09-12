@@ -8,7 +8,7 @@
   $depart = mysqli_fetch_array(mysqli_query($conn, "SELECT departamento.id_depart from departamento
     left join categprofissional on departamento.id_depart = categprofissional.id_departamento
     where departamento.id_depart = categprofissional.id_departamento and categprofissional.id_departamento = '$edit[id_catprof]'"));
-  $salBru = $edit["salario"] + ($edit["salario"]*$turn["mult"]);
+  $salBru = $edit["salario"] ;
   $irs = mysqli_fetch_array(mysqli_query($conn, "SELECT * from irs where '$salBru'> min and '$salBru' <= max"));
   $ss = mysqli_fetch_array(mysqli_query($conn, "SELECT * from segurancasocial where '$salBru'> min and '$salBru' <= max"));
 
@@ -24,24 +24,6 @@
             </div>
             <div class="form-group col-2">
                 <input type="text" id="text-input" name="nome_users" placeholder="Nome do colaborador" class="form-control" value = "<?php echo ''.$nextFatura.''?>"disabled>
-            </div>
-                <div class="form-group col-1">
-                      <label for="select" class=" form-control-label">Turno</label>
-                  </div>
-                  <div class="form-group col-2">
-                      <select name="turnos" id="select" class="form-control" <?php if ($depart["id_depart"]!=1){ echo'disabled';}?>>';
-                        <?php
-                  if ($depart["id_depart"]==1){
-                    include 'connections/conn.php';
-                    $opcoes = mysqli_query($conn, "SELECT * from turno");
-                    while($eopcoes = mysqli_fetch_array($opcoes)){
-                      echo'<option value="'.$eopcoes["id"].'">'.$eopcoes["nome_turno"].'</option>';
-                    }
-                    include 'connections/dconn.php';
-                  }else{
-                    echo'<option value="0">Escritório</option>';
-                  }?>
-                </select>
             </div>
             </div>
           <div class="row">
@@ -103,13 +85,6 @@
         <button type="submit" class="btn btn-primary btn-sm" name="submitInfo">
             <i class="fa fa-dot-circle-o"></i> Submit
         </button>
-        <?php
-        if ($depart["id_depart"]==1){
-          echo '<button type="submit" class="btn btn-warning btn-sm" name="refresh">
-              Refrescar
-          </button>';
-        }
-       ?>
     </div>
   </div>
 </form>
@@ -123,7 +98,7 @@ if (isset($_POST["refresh"])){
 if (isset($_POST["submitInfo"])){
   include 'connections/conn.php';
   mysqli_query($conn, "INSERT INTO recibos(id_trabalhador, ss_mult, ss_val, irs_mult, irs_val, turno_nome, turno_mult, isFerias, isSubNat, total)
-  VALUES ('$edit[id_users]', '$ss[mult_func]', '$valorSS', '$irs[mult]', '$valorIRS', '$turn[nome_turno]', '$turn[mult]', 0, 0, '$salLiq')");
+  VALUES ('$edit[id_users]', '$ss[mult_func]', '$valorSS', '$irs[mult]', '$valorIRS', 'natal', 0, 0, 1, '$salLiq')");
   include 'connections/dconn.php';
   echo '<meta http-equiv="refresh" content="0;url=platform.php?an=7">';
 }

@@ -78,7 +78,7 @@ validacao();
                           echo'
                           <li>
                               <a class="js-arrow" href="#">
-                                  <i class="fas fa-copy"></i>Gestão de users</a>
+                                  <i class="fas fa-copy"></i>Gestão de utilizadores</a>
                                   <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                       <li>
                                           <a href="?an=1">Criação de utilizadores</a>
@@ -87,10 +87,6 @@ validacao();
                                           <a href="?an=2">Listagem de utilizadores</a>
                                       </li>
                                     </ul>
-                          </li>
-                          <li>
-                              <a href="?an=4">
-                                  <i class="fas fa-table"></i>Categorias Profissionais</a>
                           </li>
                           <li>
                               <a class="js-arrow" href="#">
@@ -102,7 +98,14 @@ validacao();
                                         <li>
                                       <a href="?an=11">Listagem de Recibos</a>
                                   </li>
+                                  <li>
+                                      <a href="?an=14">Despesas</a>
+                                  </li>
                                     </ul>
+                          </li>
+                          <li>
+                              <a href="?an=4">
+                                  <i class="fas fa-table"></i>Categorias Profissionais</a>
                           </li>';
                         }
                        ?>
@@ -138,7 +141,7 @@ validacao();
                             echo'
                             <li>
                                 <a class="js-arrow" href="#">
-                                    <i class="fas fa-copy"></i>Gestão de users</a>
+                                    <i class="fas fa-copy"></i>Gestão de utilizadores</a>
                                     <ul class="list-unstyled navbar__sub-list js-sub-list">
                                         <li>
                                             <a href="?an=1">Criação de utilizadores</a>
@@ -147,10 +150,6 @@ validacao();
                                             <a href="?an=2">Listagem de utilizadores</a>
                                         </li>
                                       </ul>
-                            </li>
-                            <li>
-                                <a href="?an=4">
-                                    <i class="fas fa-table"></i>Categorias Profissionais</a>
                             </li>
                             <li>
                                 <a class="js-arrow" href="#">
@@ -162,14 +161,26 @@ validacao();
                                         <li>
                                             <a href="?an=11">Listagem de Recibos</a>
                                         </li>
+                                        <li>
+                                            <a href="?an=14">Despesas</a>
+                                        </li>
                                       </ul>
+                            </li>
+                            <li>
+                                <a href="?an=4">
+                                    <i class="fas fa-table"></i>Categorias Profissionais</a>
                             </li>';
                           }
                          ?>
                     </ul>
                 </nav>
+
+            </div>
+            <div class="trololol">
+            <img src="images/icon/placeholder.png" alt="A imagem não funciona" />
             </div>
         </aside>
+
         <!-- END MENU SIDEBAR-->
 
         <!-- PAGE CONTAINER-->
@@ -257,6 +268,22 @@ validacao();
                                     // code...
                                     include 'fragments\faturaslistempresa.php';
                                     break;
+                                    case '12':
+                                      // code...
+                                      include 'fragments\ferias.php';
+                                      break;
+                                      case '13':
+                                        // code...
+                                        include 'fragments\natal.php';
+                                        break;
+                                        case '14':
+                                          // code...
+                                          include 'fragments\despesas.php';
+                                          break;
+                                          case '15':
+                                            // code...
+                                            include 'fragments\pedidos.php';
+                                            break;
                 default:
                   // code...
                   include 'fragments\profile.php';

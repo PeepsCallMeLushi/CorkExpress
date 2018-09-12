@@ -7,7 +7,9 @@
                 <tr>
                     <td>Nome</td>
                     <td>Função</td>
-                    <td>Faturar</td>
+                    <td>Faturação do Mês</td>
+                    <td>Faturação das Férias</td>
+                    <td>Faturação do Subsidio de Natal</td>
                 </tr>
             </thead>
             <tbody>
@@ -38,40 +40,39 @@
                           echo '
                       </td>';
                       $fatMes=mysqli_fetch_array(mysqli_query($conn,
-                      "SELECT (MONTH(CURRENT_DATE)-MONTH(data)) as diff from recibos where id_trabalhador = '$list[id_users]' order by data desc limit 1"));
-                      if ($fatMes["diff"] == 0){
-                        echo '<td>Mês Faturado</td>';
-
-                      }else {
+                      "SELECT (MONTH(CURRENT_DATE)-MONTH(data)) as diff from recibos where id_trabalhador = '$list[id_users]' and isFerias = 0 and isSubNat = 0 order by data desc limit 1"));
+                      if ($fatMes["diff"] != 0 || is_null($fatMes["diff"])==true ){
                         echo'
                         <td>
                           <form method="post">
-                            <button type="submit" class="btn btn-success btn-sm" name="mes" value="'.$list["id_users"].'">Mês</button>
+                            <button type="submit" class="btn btn-success btn-sm" name="mes" value="'.$list["id_users"].'">Faturar</button>
                           </form>
                         </td>';
+                      }elseif ($fatMes["diff"] == 0) {
+                        echo '<td>Mês Faturado</td>';
                       }
                       $fatAno=mysqli_fetch_array(mysqli_query($conn,
                       "SELECT (YEAR(CURRENT_DATE)-YEAR(data)) as diff from recibos where id_trabalhador = '$list[id_users]' and isFerias = 1 order by data desc limit 1"));
-                      if ($fatAno["diff"] == 0){
-                        echo '<td>Férias Faturadas</td>';
-                      }else {
+                      if ($fatAno["diff"]!=0 || is_null($fatAno["diff"])==true){
                         echo'<td>
                         <form method="post">
                         <button type="submit" class="btn btn-primary btn-sm" name="ferias" value="'.$list["id_users"].'">
-                            Férias
+                            Faturar
                         </button>
                         </form>
                         </td>';
+                      }elseif($fatAno["diff"]==0) {
+                        echo '<td>Férias Faturadas</td>';
                       }
                       $fatNat = mysqli_fetch_array(mysqli_query($conn, "SELECT MONTH(CURRENT_DATE) as diff"));
                       $fatNatAno=mysqli_fetch_array(mysqli_query($conn,
                       "SELECT (YEAR(CURRENT_DATE)-YEAR(data)) as diff from recibos where id_trabalhador = '$list[id_users]' and isSubNat = 1 order by data desc limit 1"));
-                      if ($fatNat["diff"] == 11 && $fatNatAno["diff"] != 0 ){
+                      if ($fatNat["diff"] == 11 && ($fatNatAno["diff"] != 0 || is_null($fatAno["diff"])==true)){
                       echo'
                       <td>
                       <form method="post">
                       <button type="submit" class="btn btn-danger btn-sm" name="natal" value="'.$list["id_users"].'">
-                          Subsidio de natal
+                           Faturar
                       </button>
                       </form>
                       </td>';
@@ -91,11 +92,15 @@
                 /*echo 'Este if funca e o id do user é:'.$_SESSION["editID"];*/
                 echo '<meta http-equiv="refresh" content="0;url=platform.php?an=8">';
                 }
-                if (isset($_POST["deleteInfo"])) {
-                  include 'connections/conn.php';
-                  mysqli_query($conn, "DELETE from utilizador where id_users = '$_POST[deleteInfo]'");
-                  echo '<meta http-equiv="refresh" content="0;url=platform.php?an=2">';
-                  include 'connections/dconn.php';
+                if (isset($_POST["ferias"])){
+                $_SESSION["editID"] = $_POST["ferias"];
+                /*echo 'Este if funca e o id do user é:'.$_SESSION["editID"];*/
+                echo '<meta http-equiv="refresh" content="0;url=platform.php?an=12">';
+                }
+                if (isset($_POST["natal"])){
+                $_SESSION["editID"] = $_POST["natal"];
+                /*echo 'Este if funca e o id do user é:'.$_SESSION["editID"];*/
+                echo '<meta http-equiv="refresh" content="0;url=platform.php?an=13">';
                 }
               ?>
             </tbody>

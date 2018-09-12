@@ -3,6 +3,9 @@
   //$_SESSION["turnoID"];
   $recibo= mysqli_fetch_array(mysqli_query($conn, "SELECT * from recibos where id = '$_SESSION[viewID]' "));
   $tabalhador= mysqli_fetch_array(mysqli_query($conn, "SELECT * from utilizador where id_users = '$recibo[id_trabalhador]' "));
+  $depart = mysqli_fetch_array(mysqli_query($conn, "SELECT departamento.id_depart from departamento
+    left join categprofissional on departamento.id_depart = categprofissional.id_departamento
+    where departamento.id_depart = categprofissional.id_departamento and categprofissional.id_departamento = '$tabalhador[id_catprof]'"));
   $salBru = $tabalhador["salario"] + ($tabalhador["salario"]*$recibo["turno_mult"]);
   include 'connections/dconn.php';
  ?>
@@ -22,12 +25,16 @@
               <div class="form-group col-2">
                   <select name="turnos" id="select" class="form-control" disabled>
                     <?php
+                    if ($depart["id_depart"]==1){
                     include 'connections/conn.php';
                       $opcoes = mysqli_query($conn, "SELECT * from turno where nome_turno = '$recibo[turno_nome]'");
                       while($eopcoes = mysqli_fetch_array($opcoes)){
                         echo'<option value="'.$eopcoes["id"].'">'.$eopcoes["nome_turno"].'</option>';
                       }
                       include 'connections/dconn.php';
+                    }else{
+                      echo'<option value="0">Escritório</option>';
+                    }
                     ?>
                   </select>
               </div>
