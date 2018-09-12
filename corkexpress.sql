@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 11-Set-2018 às 23:50
--- Versão do servidor: 10.1.35-MariaDB
--- versão do PHP: 7.2.9
+-- Generation Time: Sep 12, 2018 at 08:09 AM
+-- Server version: 10.1.35-MariaDB
+-- PHP Version: 7.2.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `categprofissional`
+-- Table structure for table `categprofissional`
 --
 
 CREATE TABLE `categprofissional` (
@@ -35,7 +35,7 @@ CREATE TABLE `categprofissional` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `categprofissional`
+-- Dumping data for table `categprofissional`
 --
 
 INSERT INTO `categprofissional` (`id_catprof`, `nome_catprof`, `id_departamento`) VALUES
@@ -43,12 +43,13 @@ INSERT INTO `categprofissional` (`id_catprof`, `nome_catprof`, `id_departamento`
 (2, 'Controlo de Qualidade', 2),
 (3, 'Finanças', 1),
 (4, 'Information Technologies', 1),
-(6, 'Mecânicos De PLCs', 2);
+(6, 'Mecânicos De PLCs', 2),
+(7, 'Imperador Romano', 1);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `cores`
+-- Table structure for table `cores`
 --
 
 CREATE TABLE `cores` (
@@ -60,7 +61,7 @@ CREATE TABLE `cores` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `cores`
+-- Dumping data for table `cores`
 --
 
 INSERT INTO `cores` (`id`, `Name`, `logo`, `header`, `body`) VALUES
@@ -70,7 +71,7 @@ INSERT INTO `cores` (`id`, `Name`, `logo`, `header`, `body`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `departamento`
+-- Table structure for table `departamento`
 --
 
 CREATE TABLE `departamento` (
@@ -79,7 +80,7 @@ CREATE TABLE `departamento` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `departamento`
+-- Dumping data for table `departamento`
 --
 
 INSERT INTO `departamento` (`id_depart`, `nome_depart`) VALUES
@@ -89,7 +90,7 @@ INSERT INTO `departamento` (`id_depart`, `nome_depart`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `irs`
+-- Table structure for table `irs`
 --
 
 CREATE TABLE `irs` (
@@ -100,7 +101,7 @@ CREATE TABLE `irs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `irs`
+-- Dumping data for table `irs`
 --
 
 INSERT INTO `irs` (`id`, `min`, `max`, `mult`) VALUES
@@ -112,7 +113,7 @@ INSERT INTO `irs` (`id`, `min`, `max`, `mult`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `meses`
+-- Table structure for table `meses`
 --
 
 CREATE TABLE `meses` (
@@ -121,7 +122,7 @@ CREATE TABLE `meses` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Extraindo dados da tabela `meses`
+-- Dumping data for table `meses`
 --
 
 INSERT INTO `meses` (`id`, `mes`) VALUES
@@ -141,7 +142,42 @@ INSERT INTO `meses` (`id`, `mes`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `recibos`
+-- Table structure for table `pedidos`
+--
+
+CREATE TABLE `pedidos` (
+  `id` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `nib_atual` varchar(23) NOT NULL,
+  `nib_novo` varchar(23) NOT NULL,
+  `estado` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pedidos`
+--
+
+INSERT INTO `pedidos` (`id`, `id_user`, `nib_atual`, `nib_novo`, `estado`) VALUES
+(1, 22, '31632324150915701', '123', 2),
+(2, 22, '31632324150915701', '125125214124', 2),
+(3, 22, '31632324150915701', '125125214124', 2),
+(4, 22, '31632324150915701', '4556782345', 2),
+(5, 22, '31632324150915701', '123425421515', 2),
+(6, 22, '', '2312412512312', 2),
+(7, 5, '', '1241254125', 2),
+(8, 5, '', '123123123213', 2),
+(9, 5, '123', '12424', 2),
+(10, 2, 'ze', '123456789', 2),
+(11, 2, '', '123424214', 1),
+(12, 2, '12345', '987654321', 1),
+(13, 3, 'beny', '112233445566778899', 1),
+(14, 5, '123', '12325412225', 1),
+(15, 5, '12325412225', '1234124124', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `recibos`
 --
 
 CREATE TABLE `recibos` (
@@ -160,19 +196,27 @@ CREATE TABLE `recibos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `recibos`
+-- Dumping data for table `recibos`
 --
 
 INSERT INTO `recibos` (`id`, `id_trabalhador`, `ss_mult`, `ss_val`, `irs_mult`, `irs_val`, `turno_nome`, `turno_mult`, `isFerias`, `isSubNat`, `total`, `data`) VALUES
-(1, 2, 0.11, 0.1111, 0.08, 0.0808, 'manhã', 0.01, 0, 0, 0.8181, '2018-09-11 17:53:56'),
-(4, 5, 0.11, 113.3, 0.1, 103, 'noite', 0.03, 0, 0, 813.7, '2018-09-11 17:58:10'),
-(8, 3, 0, 0, 0, 0, '', 0, 0, 0, 0, '2018-08-15 23:00:00'),
-(11, 5, 0, 0, 0, 0, '', 0, 1, 0, 0, '2017-10-26 21:29:58');
+(28, 3, 0.11, 165.11, 0.12, 180.12, '', 0, 0, 0, 1155.77, '2018-08-15 02:13:06'),
+(30, 2, 0.11, 165, 0.12, 180, '', 0, 0, 0, 1155, '2018-08-15 02:18:32'),
+(31, 2, 0.11, 165, 0.12, 180, 'férias', 0, 1, 0, 1155, '2018-09-12 02:18:36'),
+(32, 2, 0.11, 165, 0.12, 180, 'natal', 0, 0, 1, 1155, '2018-09-12 02:18:43'),
+(33, 3, 0.11, 165.11, 0.12, 180.12, 'férias', 0, 1, 0, 1155.77, '2018-09-12 02:19:33'),
+(34, 3, 0.11, 165.11, 0.12, 180.12, 'natal', 0, 0, 1, 1155.77, '2018-09-12 02:19:38'),
+(35, 5, 0.11, 110, 0.1, 100, '', 0, 0, 0, 790, '2018-08-21 02:19:56'),
+(36, 5, 0.11, 110, 0.1, 100, 'férias', 0, 1, 0, 790, '2018-09-12 02:19:59'),
+(37, 5, 0.11, 110, 0.1, 100, 'natal', 0, 0, 1, 790, '2018-09-12 02:20:05'),
+(38, 2, 0.11, 165, 0.12, 180, '', 0, 0, 0, 1155, '2018-09-12 02:23:12'),
+(39, 3, 0.11, 165.11, 0.12, 180.12, '', 0, 0, 0, 1155.77, '2018-09-12 02:23:14'),
+(40, 5, 0.11, 110, 0.1, 100, '', 0, 0, 0, 790, '2018-09-12 02:23:17');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `segurancasocial`
+-- Table structure for table `segurancasocial`
 --
 
 CREATE TABLE `segurancasocial` (
@@ -184,7 +228,7 @@ CREATE TABLE `segurancasocial` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `segurancasocial`
+-- Dumping data for table `segurancasocial`
 --
 
 INSERT INTO `segurancasocial` (`id`, `min`, `max`, `mult_func`, `mult_emp`) VALUES
@@ -195,7 +239,7 @@ INSERT INTO `segurancasocial` (`id`, `min`, `max`, `mult_func`, `mult_emp`) VALU
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `turno`
+-- Table structure for table `turno`
 --
 
 CREATE TABLE `turno` (
@@ -205,7 +249,7 @@ CREATE TABLE `turno` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `turno`
+-- Dumping data for table `turno`
 --
 
 INSERT INTO `turno` (`id`, `nome_turno`, `mult`) VALUES
@@ -216,7 +260,7 @@ INSERT INTO `turno` (`id`, `nome_turno`, `mult`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `utilizador`
+-- Table structure for table `utilizador`
 --
 
 CREATE TABLE `utilizador` (
@@ -235,13 +279,14 @@ CREATE TABLE `utilizador` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `utilizador`
+-- Dumping data for table `utilizador`
 --
 
 INSERT INTO `utilizador` (`id_users`, `nome_users`, `email`, `morada`, `nif`, `niss`, `nib`, `telemovel`, `datanasc`, `id_catprof`, `salario`, `password`) VALUES
-(2, 'ze', 'ze@ze.ze', 'ze', '123456789', 'ze', 'ze', '910000000', '1997-05-16', 1, 1, 'jose'),
-(3, 'beny', 'beny@djimail.com', 'beny', 'beny', 'beny', 'beny', '9100', '1994-10-20', 1, 1, 'beny'),
-(5, 'SuperMegaMachoInvencivelDoEspaço', 'boda@gaymail.com', 'YMCA', '123', '123', '123', '910000001', '0003-02-01', 4, 1000, 'boda');
+(2, 'ze', 'ze@ze.ze', 'ze', '123456789', 'ze', '987654321', '910000000', '1997-05-16', 1, 1500, 'jose'),
+(3, 'beny', 'beny@djimail.com', 'beny', 'beny', 'beny', '112233445566778899', '9100', '1994-10-20', 1, 1501, 'beny'),
+(5, 'SuperMegaMachoInvencivelDoEspaço', 'boda@gaymail.com', 'YMCA', '123', '123', '12325412225', '910000001', '0003-02-01', 4, 1000, 'boda'),
+(22, 'Nero Claudius Caesar Augustus Germanicus', 'umu@gmail.com', 'Rome', '7695733', '1852142191', '31632324150915701', '953067617', '0037-12-15', 7, 1000000, 'umu');
 
 --
 -- Indexes for dumped tables
@@ -275,6 +320,12 @@ ALTER TABLE `irs`
 -- Indexes for table `meses`
 --
 ALTER TABLE `meses`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `pedidos`
+--
+ALTER TABLE `pedidos`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -314,7 +365,7 @@ ALTER TABLE `utilizador`
 -- AUTO_INCREMENT for table `categprofissional`
 --
 ALTER TABLE `categprofissional`
-  MODIFY `id_catprof` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_catprof` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `cores`
@@ -341,10 +392,16 @@ ALTER TABLE `meses`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
+-- AUTO_INCREMENT for table `pedidos`
+--
+ALTER TABLE `pedidos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
 -- AUTO_INCREMENT for table `recibos`
 --
 ALTER TABLE `recibos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `segurancasocial`
@@ -356,13 +413,13 @@ ALTER TABLE `segurancasocial`
 -- AUTO_INCREMENT for table `turno`
 --
 ALTER TABLE `turno`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `utilizador`
 --
 ALTER TABLE `utilizador`
-  MODIFY `id_users` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_users` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
